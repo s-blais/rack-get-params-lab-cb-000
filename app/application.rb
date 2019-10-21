@@ -21,6 +21,13 @@ class Application
         resp.write "#{item}\n"
         end
       end
+    elsif req.path.match(/add/)
+      adding_item = req.params["item"]
+      if @@items.include?(adding_item)
+        @@cart << adding_item
+      else
+        resp.write "We don't have that item"
+      end      
     else
       resp.write "Path Not Found"
     end
